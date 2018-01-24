@@ -1,5 +1,7 @@
 package com.kailaisi.eshop.listener;
 
+import com.kailaisi.eshop.thread.RequestProcessorThreadPool;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -9,6 +11,8 @@ import javax.servlet.ServletContextListener;
 public class InitListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
+        //初始化工作的线程池和内存队列
+        RequestProcessorThreadPool.init();
     }
 
     @Override
