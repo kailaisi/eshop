@@ -7,12 +7,12 @@ import com.kailaisi.eshop.service.ProductInventoryService;
  * 数据更新的请求
  * 先删除缓存，再更新数据库
  */
-public class InventoryCntDBDUpdateRequest implements Request {
+public class ProductInventoryDBDUpdateRequest implements Request {
 
     private ProductInventory productInventory;
     private ProductInventoryService productInventoryService;
 
-    public InventoryCntDBDUpdateRequest(ProductInventory productInventory, ProductInventoryService productInventoryService) {
+    public ProductInventoryDBDUpdateRequest(ProductInventory productInventory, ProductInventoryService productInventoryService) {
         this.productInventory = productInventory;
         this.productInventoryService = productInventoryService;
     }
@@ -23,5 +23,10 @@ public class InventoryCntDBDUpdateRequest implements Request {
         productInventoryService.removeProductInventory(productInventory);
         //更新数据库
         productInventoryService.updateProductInventory(productInventory);
+    }
+
+    @Override
+    public Integer getProductId() {
+        return productInventory.getProductId();
     }
 }

@@ -23,4 +23,9 @@ public class ProductInventoryCacheReloadRequest implements Request {
         //将库存数量刷新到缓存中
         productInventoryService.setProductInventoryCache(productInventory);
     }
+
+    @Override
+    public Integer getProductId() {
+        return productId;
+    }
 }

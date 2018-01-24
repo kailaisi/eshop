@@ -20,8 +20,14 @@ public class RequestProcessorThread implements Callable<Boolean> {
 
     @Override
     public Boolean call() throws Exception {
-        while (true){
-            break;
+        try {
+            while (true){
+                //如果队列满了，就会阻塞
+                Request take = queue.take();
+                take.process();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return true;
     }

@@ -10,6 +10,14 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class RequestQueue {
     private List<ArrayBlockingQueue<Request>> queues = new ArrayList<>();
 
+    public Integer getSize() {
+        return queues.size();
+    }
+
+    public ArrayBlockingQueue<Request> getQueue(int index) {
+        return queues.get(index);
+    }
+
     private static class Singleton {
         private static RequestQueue instance;
 
