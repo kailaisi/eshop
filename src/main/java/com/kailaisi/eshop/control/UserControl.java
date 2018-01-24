@@ -19,4 +19,10 @@ public class UserControl {
     public User getUserInfo() {
         return userService.findUserInfo();
     }
+
+    @RequestMapping("/getCachedUserInfo")
+    @ResponseBody
+    public User getCachedUserInfo() {
+        return userService.getCachedUserInfo();
+    }
 }
