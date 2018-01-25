@@ -52,14 +52,17 @@ public class ProductInventoryControl {
     public ProductInventory getProductInventory(Integer productId) {
         ProductInventory response;
         try {
+            ProductInventory inventoryCache = productInventoryService.getProductInventoryCache(productId);
+            if (inventoryCache != null) {//缓存有数据，直接返回
+                return inventoryCache;
+            }
             Request request = new ProductInventoryCacheReloadRequest(productId, productInventoryService);
             requestAsyncProcessService.process(request);
             long start = System.currentTimeMillis();
             long waitTime = 0L;
-            long endTime = 0L;
             //尝试等待前面的商品库存更新的操作
             while (true) {
-                ProductInventory inventoryCache = productInventoryService.getProductInventoryCache(productId);
+                inventoryCache = productInventoryService.getProductInventoryCache(productId);
                 if (inventoryCache != null) {//缓存有数据，直接返回
                     return inventoryCache;
                 } else {//等待200ms，如果没有数据

@@ -18,7 +18,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
-import javax.security.auth.message.config.RegistrationListener;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,7 +29,6 @@ import java.util.Set;
 @ComponentScan
 @MapperScan("com.kailaisi.eshop.mapper")
 public class EshopApplication {
-
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
